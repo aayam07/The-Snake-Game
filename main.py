@@ -40,47 +40,19 @@ while game_is_on:
 
     # Detect Collision with wall
     if snake.head.xcor() > 285 or snake.head.xcor() < -298 or snake.head.ycor() > 285 or snake.head.ycor() < -300:
-        game_is_on = False
-        scoreboard.game_over()
+        scoreboard.reset_scoreboard()
+        snake.reset_snake()
 
     # Detect collision with Tail
     # if the head collides with any segment in the tail(any other segments), the trigger Game Over
     for segment in snake.segments[1:]:  # all the segments from index 1 (i.e the head segment at index 0 is excluded.)
         if snake.head.distance(segment) < 10:
-            game_is_on = False
-            scoreboard.game_over()
+            scoreboard.reset_scoreboard()
+            snake.reset_snake()
+
         # if segment != snake.head and snake.head.distance(segment) < 10:
         #     game_is_on = False
         #     scoreboard.game_over()
 
 
 screen.exitonclick()
-
-
-# # Create Snake Body
-# starting_x_positions = [0, -20, -40]  # x-coordinates
-# # starting_positions = [(0, 0), (-20, 0), (-40, 0)] # this can be used in for loop and goto() alternatively
-# segments = []
-#
-# for index in range(0, 3):
-#     new_snake = Turtle(shape="square")
-#     new_snake.color("white")
-#     new_snake.penup()
-#     new_snake.goto(x=starting_x_positions[index], y=0)
-#     segments.append(new_snake)
-#
-# # Move the snake
-# game_is_on = True
-# while game_is_on:
-#     # the screen will be updated only after all 3 segments move. It'll look like they are moving at once
-#     screen.update()  # update should be called after each animation(movement of stuffs) when the tracer is off.
-#     time.sleep(0.1)
-#     # for segment in segments:
-#     #     segment.forward(20)
-#
-#     for seg_num in range(len(segments) - 1, 0, -1):  # start, stop, step (0 is excluded)
-#         new_x = segments[seg_num - 1].xcor()  # of second-last segment
-#         new_y = segments[seg_num - 1].ycor()  # of second_last segment
-#         segments[seg_num].goto(new_x, new_y)
-#     segments[0].forward(20)
-#     # segments[0].left(90)

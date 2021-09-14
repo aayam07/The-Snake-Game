@@ -30,6 +30,13 @@ class Snake:
         new_segment.goto(position)
         self.segments.append(new_segment)
 
+    def reset_snake(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000)  # when the game ends, the previous snake is sent far away.
+        self.segments.clear()  # removes all the segments from self.segments list
+        self.create_snake()
+        self.head = self.segments[0]
+
     def extend(self):
         """Adds a new segment to the snake"""
         # print(self.segments[-1].position())
